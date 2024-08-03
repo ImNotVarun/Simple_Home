@@ -39,7 +39,11 @@ function handleInput() {
         const query = encodeURIComponent(input);
         window.location.href = `https://www.google.com/search?q=${query}`;
     }
+
+    // Clear the input field after handling
+    searchInput.value = '';
 }
+
 
 searchInput.addEventListener('input', () => {
     cursor.style.display = searchInput.value ? 'none' : 'inline';
