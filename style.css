@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+AR:wght@100..400&family=Playwrite+BE+VLG:wght@100..400&display=swap');
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #2a2828;
+    color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+#search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: relative;
+}
+
+#search-input {
+    font-family: Playwrite AR, sans-serif;
+    background-color: transparent;
+    border: none;
+    color: #f0f0f0;
+    font-size: 7vh;
+    outline: none;
+    text-align: center;
+    width: 80%;
+    max-width: 600px;
+    caret-color: transparent;
+}
+
+#cursor {
+    position: absolute;
+    animation: blink 1s infinite;
+    color: #f0f0f0;
+    font-size: 7vh;
+    pointer-events: none;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
