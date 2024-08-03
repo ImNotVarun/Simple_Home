@@ -31,12 +31,15 @@ html {
     caret-color: transparent;
 }
 
+
+
 #cursor {
     position: absolute;
     animation: blink 1s infinite;
     color: #f0f0f0;
-    font-size: 7vh;
+    font-size: 9vh;
     pointer-events: none;
+
 }
 
 @keyframes blink {

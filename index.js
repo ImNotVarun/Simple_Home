@@ -12,7 +12,6 @@ function updateCursorPosition() {
 }
 
 function isValidURL(string) {
-    // Simple regex to check if the string looks like a domain
     const domainRegex = /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/;
 
     if (domainRegex.test(string)) {
@@ -42,8 +41,9 @@ function handleInput() {
 
     // Clear the input field after handling
     searchInput.value = '';
+    // Show the cursor after clearing the input
+    cursor.style.display = 'inline';
 }
-
 
 searchInput.addEventListener('input', () => {
     cursor.style.display = searchInput.value ? 'none' : 'inline';
