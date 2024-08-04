@@ -140,7 +140,7 @@ html {
 }
 
 /* Responsive layout: Show menu on click */
-@media (max-width: 600px) {
+@media (max-width: 500px) {
     .shortcut-menu {
         display: block;
         /* Always visible */
