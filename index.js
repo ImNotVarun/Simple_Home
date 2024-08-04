@@ -239,3 +239,14 @@ function hideMenus(event) {
 }
 
 document.addEventListener('click', hideMenus);
+
+// Function to focus on the search input when clicking anywhere on the page
+function focusSearchInput(event) {
+    // Check if the clicked element is not the search input itself
+    if (event.target !== searchInput && !searchInput.contains(event.target)) {
+        searchInput.focus();
+    }
+}
+
+// Event listener to focus on the search input when clicking anywhere on the page
+document.addEventListener('click', focusSearchInput);
