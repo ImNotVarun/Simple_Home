@@ -60,32 +60,15 @@ function getDomainFromURL(url) {
     }
 }
 
-// Function to get Font Awesome icon
-function getFontAwesomeIcon(domain) {
-    const iconMap = {
-        'facebook.com': 'fa-facebook',
-        'twitter.com': 'fa-twitter',
-        'youtube.com': 'fa-youtube',
-        'google.com': 'fa-google',
-        'linkedin.com': 'fa-linkedin',
-        'github.com': 'fa-github',
-        'amazon.com': 'fa-amazon',
-        'reddit.com': 'fa-reddit',
-        'instagram.com': 'fa-instagram',
-    };
-
-    return iconMap[domain] || null;
-}
-
 // Function to get favicon URL
 function getFavicon(url) {
-    return `https://www.google.com/s2/favicons?domain=${url}`;
+    return `https://wilful-amethyst-butterfly.faviconkit.com/${url}/48`; // Adjust size if needed
 }
 
 // Function to render shortcuts
-function renderShortcuts() {
+async function renderShortcuts() {
     shortcutContainer.innerHTML = '';
-    shortcuts.forEach((shortcut, index) => {
+    for (const [index, shortcut] of shortcuts.entries()) {
         const shortcutElement = document.createElement('div');
         shortcutElement.className = 'shortcut';
 
@@ -97,15 +80,10 @@ function renderShortcuts() {
         iconElement.className = 'shortcut-icon';
 
         const domain = getDomainFromURL(shortcut.url);
-        const iconClass = getFontAwesomeIcon(domain);
-        if (iconClass) {
-            // Use Font Awesome icon
-            iconElement.innerHTML = `<i class="fab ${iconClass}"></i>`;
-        } else {
-            // Use website favicon
-            const faviconUrl = getFavicon(shortcut.url);
-            iconElement.style.backgroundImage = `url(${faviconUrl})`;
-        }
+
+        // Use website favicon
+        const faviconUrl = getFavicon(domain);
+        iconElement.style.backgroundImage = `url(${faviconUrl})`;
 
         const nameElement = document.createElement('div');
         nameElement.className = 'shortcut-name';
@@ -160,7 +138,7 @@ function renderShortcuts() {
         shortcutElement.onclick = () => window.open(shortcut.url, '_blank');
 
         shortcutContainer.appendChild(shortcutElement);
-    });
+    }
 }
 
 // Function to add shortcut
@@ -194,11 +172,9 @@ function editShortcut(index) {
 
 // Function to remove shortcut
 function removeShortcut(index) {
-    if (confirm('Delete this shortcut?')) {
-        shortcuts.splice(index, 1);
-        saveShortcuts();
-        renderShortcuts();
-    }
+    shortcuts.splice(index, 1);
+    saveShortcuts();
+    renderShortcuts();
 }
 
 // Function to save shortcuts to localStorage
