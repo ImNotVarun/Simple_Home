@@ -70,7 +70,21 @@ html {
     transform: translateY(-50%);
     width: 100%;
     max-width: 600px;
-    top: 570px;
+    padding-bottom: 60px;
+}
+
+/* Main layout: 5 bookmarks per line */
+@media (min-width: 601px) {
+    #shortcut-container {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+/* Responsive layout: 3 bookmarks per line */
+@media (max-width: 600px) {
+    #shortcut-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 .shortcut {
@@ -81,6 +95,8 @@ html {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 15px;
+    top: 200px;
 }
 
 .shortcut-icon {
@@ -116,8 +132,19 @@ html {
     display: none;
 }
 
-.shortcut:hover .shortcut-menu {
-    display: block;
+/* Main layout: Show menu on hover */
+@media (min-width: 601px) {
+    .shortcut:hover .shortcut-menu {
+        display: block;
+    }
+}
+
+/* Responsive layout: Show menu on click */
+@media (max-width: 600px) {
+    .shortcut-menu {
+        display: block;
+        /* Always visible */
+    }
 }
 
 .menu-options {
@@ -156,7 +183,7 @@ html {
     font-size: 24px;
     border: none;
     cursor: pointer;
-    position: absolute;
+    position: fixed;
     bottom: 5%;
     left: 50%;
     transform: translateX(-50%);
