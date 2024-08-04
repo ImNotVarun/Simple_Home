@@ -63,7 +63,6 @@ html {
     justify-content: center;
     flex-wrap: wrap;
     margin-bottom: 20px;
-
 }
 
 .shortcut {
@@ -76,17 +75,50 @@ html {
     margin-top: 60px;
 }
 
+.shortcut-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+}
+
+.shortcut-icon i {
+    font-size: 24px;
+    color: #f0f0f0;
+}
+
+.shortcut-name {
+    margin-top: 5px;
+    font-size: 12px;
+    text-align: center;
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
 .shortcut-menu {
     position: absolute;
-    top: -20px;
-    right: -10px;
+    right: -3px;
     color: #f0f0f0;
     font-size: 18px;
     cursor: pointer;
-
+    display: none;
+    /* Hide the menu initially */
 }
 
+/* Show the menu when hovering over the shortcut */
+.shortcut:hover .shortcut-menu {
+    display: block;
+    /* Show the menu when hovering over the shortcut */
+}
+
+/* Menu options styling */
 .menu-options {
+    display: none;
+    /* Hide the menu options initially */
     position: absolute;
     right: 0;
     background-color: #333;
@@ -94,7 +126,12 @@ html {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     width: 80px;
+}
 
+/* Show menu options on clicking the menu icon */
+.shortcut-menu.active+.menu-options {
+    display: block;
+    /* Show the menu options when the menu icon is active */
 }
 
 .menu-options div {
@@ -117,20 +154,4 @@ html {
     font-size: 24px;
     border: none;
     cursor: pointer;
-}
-
-.shortcut-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 10px;
-    background-size: cover;
-    background-position: center;
-}
-
-.shortcut-name {
-    margin-top: 5px;
-    font-size: 12px;
-    text-align: center;
-    word-wrap: break-word;
-    max-width: 100%;
 }
