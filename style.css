@@ -21,7 +21,7 @@ html {
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 40%;
+    top: 30%;
     transform: translateY(-50%);
     width: 80%;
     max-width: 600px;
@@ -62,14 +62,15 @@ html {
 
 #shortcut-container {
     display: flex;
+    flex-wrap: wrap;
     gap: 30px;
     justify-content: center;
-    flex-wrap: wrap;
     position: absolute;
-    bottom: 15%;
+    top: 50%;
+    transform: translateY(-50%);
     width: 100%;
-    padding-bottom: 60px;
-    /* Added padding to account for the button */
+    max-width: 600px;
+    top: 500px;
 }
 
 .shortcut {
@@ -80,7 +81,6 @@ html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 60px;
 }
 
 .shortcut-icon {
@@ -156,9 +156,8 @@ html {
     font-size: 24px;
     border: none;
     cursor: pointer;
-    position: fixed;
-    margin-left: 50px;
+    position: absolute;
     bottom: 10%;
-    /* Position it slightly above the bottom */
+    left: 50%;
     transform: translateX(-50%);
 }
