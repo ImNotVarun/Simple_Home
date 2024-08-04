@@ -13,13 +13,16 @@ html {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 #search-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
     width: 80%;
     max-width: 600px;
     margin-bottom: 20px;
@@ -62,7 +65,11 @@ html {
     gap: 30px;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 20px;
+    position: absolute;
+    bottom: 15%;
+    width: 100%;
+    padding-bottom: 60px;
+    /* Added padding to account for the button */
 }
 
 .shortcut {
@@ -81,15 +88,12 @@ html {
     justify-content: center;
     align-items: center;
     width: 32px;
-    /* Adjusted size */
     height: 32px;
-    /* Adjusted size */
     border-radius: 10px;
     background-size: cover;
     background-position: center;
     position: relative;
     margin-bottom: 10px;
-    /* Make this relative for correct positioning of the menu */
 }
 
 .shortcut-name {
@@ -98,7 +102,6 @@ html {
     text-align: center;
     word-wrap: break-word;
     max-width: 100%;
-
 }
 
 .shortcut-menu {
@@ -106,9 +109,7 @@ html {
     width: 10px;
     text-align: center;
     right: 7px;
-    /* Positioning it inside the container */
     top: 0;
-    /* Align with the top of the container */
     color: #f0f0f0;
     font-size: 18px;
     cursor: pointer;
@@ -124,7 +125,6 @@ html {
     position: absolute;
     right: 0;
     top: 40px;
-    /* Adjust as needed */
     background-color: #333;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -156,4 +156,9 @@ html {
     font-size: 24px;
     border: none;
     cursor: pointer;
+    position: fixed;
+    margin-left: 50px;
+    bottom: 10%;
+    /* Position it slightly above the bottom */
+    transform: translateX(-50%);
 }
