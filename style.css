@@ -70,7 +70,7 @@ html {
     transform: translateY(-50%);
     width: 100%;
     max-width: 600px;
-    top: 500px;
+    top: 550px;
 }
 
 .shortcut {
@@ -157,7 +157,7 @@ html {
     border: none;
     cursor: pointer;
     position: absolute;
-    bottom: 10%;
+    bottom: 5%;
     left: 50%;
     transform: translateX(-50%);
 }
