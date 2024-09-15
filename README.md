@@ -1,6 +1,9 @@
 # SIMPLE HOME
 
 The **Shortcut App** is a customizable homepage that you can set as your browser's homepage. It features a clean interface for quick search and bookmark management. You can add your favorite websites as shortcuts, and more features are coming soon!
+## Screenshots
+<img src="https://github.com/user-attachments/assets/0904eaed-88dd-4582-a7e9-3066f7e56b97" alt="screenshot Image" width="74%"/>
+<img src="https://github.com/user-attachments/assets/2a792eb9-43b3-4d20-af33-8cf9e19758b0" alt="screenshot Image" width="25%"/>
 
 ## Features
 - **Customizable Search Bar**: Quickly search the web or go directly to a URL.
