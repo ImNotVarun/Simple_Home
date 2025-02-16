@@ -1,190 +1,346 @@
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+AR:wght@100..400&family=Playwrite+BE+VLG:wght@100..400&display=swap');
 
+/* Add loading bar styles at the top */
+#loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(to right, #fafafa, #a363d9);
+  transition: width 0.2s ease-out;
+  z-index: 9999;
+  visibility: hidden;
+}
+
+#loading-bar.loading {
+  visibility: visible;
+  animation: loading-animation 1.5s ease-in-out infinite;
+}
+
+@keyframes loading-animation {
+  0% {
+    width: 0;
+  }
+  35% {
+    width: 35%;
+  }
+  50% {
+    width: 65%;
+  }
+  75% {
+    width: 80%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
 body,
 html {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: #2a2828;
-    color: #f0f0f0;
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #2a2828;
+  color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: background 0.5s ease;
+}
+
+#settings-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 1000;
+  color: #f0f0f0;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+#settings-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background-color: rgba(42, 40, 40, 0.95);
+  z-index: 999;
+  backdrop-filter: blur(5px);
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  visibility: hidden;
+}
+
+.modal.show {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.modal-content {
+  padding: 20px;
+  color: #f0f0f0;
+}
+
+.setting-item {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Search Engine Button Group */
+#search-engine-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.search-engine-button {
+  padding: 5px 10px;
+  background-color: #444;
+  border: none;
+  border-radius: 5px;
+  color: #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-engine-button:hover {
+  background-color: #555;
+}
+
+.search-engine-button.active {
+  background-color: #6c5ce7;
+}
+
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #444;
+  transition: .4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #f0f0f0;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #6c5ce7;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+select {
+  background-color: #444;
+  color: #f0f0f0;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 #search-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 30%;
-    transform: translateY(-50%);
-    width: 80%;
-    max-width: 600px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 30%;
+  transform: translateY(-50%);
+  width: 80%;
+  max-width: 600px;
+  margin-bottom: 20px;
 }
 
 #search-input {
-    font-family: Playwrite AR, sans-serif;
-    background-color: transparent;
-    border: none;
-    color: #f0f0f0;
-    font-size: 7vh;
-    outline: none;
-    text-align: center;
-    width: 100%;
-    caret-color: transparent;
+  font-family: Playwrite AR, sans-serif;
+  background-color: transparent;
+  border: none;
+  color: #f0f0f0;
+  font-size: 7vh;
+  outline: none;
+  text-align: center;
+  width: 100%;
+  caret-color: transparent;
 }
 
 #cursor {
-    position: absolute;
-    animation: blink 1s infinite;
-    color: #f0f0f0;
-    font-size: 9vh;
-    pointer-events: none;
+  position: absolute;
+  animation: blink 1s infinite;
+  color: #f0f0f0;
+  font-size: 9vh;
+  pointer-events: none;
 }
 
 @keyframes blink {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0;
-    }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 #shortcut-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100%;
-    max-width: 600px;
-    padding-bottom: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  max-width: 600px;
+  padding-bottom: 60px;
 }
 
-/* Main layout: 5 bookmarks per line */
 @media (min-width: 601px) {
-    #shortcut-container {
-        grid-template-columns: repeat(5, 1fr);
-    }
+  #shortcut-container {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 
-/* Responsive layout: 3 bookmarks per line */
 @media (max-width: 600px) {
-    #shortcut-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
+  #shortcut-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .shortcut {
-    width: 80px;
-    position: relative;
-    background-position: center;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 15px;
-    top: 200px;
+  width: 80px;
+  position: relative;
+  background-position: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+  top: 200px;
 }
 
 .shortcut-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 10px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  margin-bottom: 10px;
 }
 
 .shortcut-name {
-    margin-top: 5px;
-    font-size: 12px;
-    text-align: center;
-    word-wrap: break-word;
-    max-width: 100%;
+  margin-top: 5px;
+  font-size: 12px;
+  text-align: center;
+  word-wrap: break-word;
+  max-width: 100%;
 }
 
 .shortcut-menu {
-    position: absolute;
-    width: 10px;
-    text-align: center;
-    right: 7px;
-    top: 0;
-    color: #f0f0f0;
-    font-size: 18px;
-    cursor: pointer;
-    display: none;
+  position: absolute;
+  width: 10px;
+  text-align: center;
+  right: 7px;
+  top: 0;
+  color: #f0f0f0;
+  font-size: 18px;
+  cursor: pointer;
+  display: none;
 }
 
-/* Main layout: Show menu on hover */
 @media (min-width: 601px) {
-    .shortcut:hover .shortcut-menu {
-        display: block;
-    }
+  .shortcut:hover .shortcut-menu {
+    display: block;
+  }
 }
 
-/* Responsive layout: Show menu on click */
 @media (max-width: 500px) {
-    .shortcut-menu {
-        display: block;
-        /* Always visible */
-    }
+  .shortcut-menu {
+    display: block;
+  }
 }
 
 .menu-options {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 40px;
-    background-color: #333;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    width: 80px;
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background-color: #333;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  width: 80px;
 }
 
-.shortcut-menu.active+.menu-options {
-    display: block;
+.shortcut-menu.active + .menu-options {
+  display: block;
 }
 
 .menu-options div {
-    padding: 5px 10px;
-    cursor: pointer;
-    color: #f0f0f0;
-    text-align: center;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: #f0f0f0;
+  text-align: center;
 }
 
 .menu-options div:hover {
-    background-color: #444;
+  background-color: #444;
 }
 
 #add-shortcut {
-    width: 50px;
-    height: 50px;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #f0f0f0;
-    font-size: 24px;
-    border: none;
-    cursor: pointer;
-    position: fixed;
-    bottom: 5%;
-    left: 50%;
-    transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #f0f0f0;
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
 }
