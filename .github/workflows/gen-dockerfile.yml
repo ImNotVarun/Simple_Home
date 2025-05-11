@@ -1,0 +1,32 @@
+name: Generate Dockerfile
+
+on:
+  push:
+    paths:
+      - .github/workflows/gen-dockerfile.yml
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Generate Dockerfile
+        run: |
+          echo "FROM alpine" > Dockerfile
+          echo "CMD ["echo", "Hello from Dockerfile"]" >> Dockerfile
+
+      - name: Create Tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a v1.0.0 -m "Release v1.0.0"
+          git push origin v1.0.0
+
+      - name: Upload Dockerfile to Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: Dockerfile
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
