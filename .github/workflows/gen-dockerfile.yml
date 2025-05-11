@@ -1,0 +1,44 @@
+name: Generate Dockerfile
+
+on:
+  push:
+    paths:
+      - .github/workflows/gen-dockerfile.yml
+
+# Grant write access so github-actions[bot] can push tags
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Generate Dockerfile
+        run: |
+          echo "FROM alpine" > Dockerfile
+          echo "CMD ["echo", "Hello from Dockerfile"]" >> Dockerfile
+
+      - name: Create Tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Configure Git with GitHub Actions bot
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Dynamically generate or set the tag
+          TAG_NAME="v1.0.0"
+          git tag -a "$TAG_NAME" -m "Release $TAG_NAME"
+
+          # Push the tag back to the repository
+          git push origin "$TAG_NAME"
+
+      - name: Upload Dockerfile to Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: Dockerfile
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
